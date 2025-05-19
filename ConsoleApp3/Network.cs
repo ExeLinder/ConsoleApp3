@@ -48,6 +48,9 @@ namespace ConsoleApp3
             {
 
             }
+        public TcpClient Accept(TcpListener? listener)
+        {
+            return listener!.AcceptTcpClient();
         }
     }
 }
