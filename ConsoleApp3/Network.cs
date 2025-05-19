@@ -31,5 +31,16 @@ namespace ConsoleApp3
                 }
             }
         }
+
+        public void Write(TcpClient client)
+        { 
+            NetworkStream nstream = client.GetStream();
+
+            string? str = Console.ReadLine();
+
+            byte[] buffer = Encoding.UTF8.GetBytes(str!);
+
+            nstream.Write(buffer, 0, buffer.Length);
+        }
     }
 }
