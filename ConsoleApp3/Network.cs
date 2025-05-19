@@ -40,7 +40,14 @@ namespace ConsoleApp3
 
             byte[] buffer = Encoding.UTF8.GetBytes(str!);
 
-            nstream.Write(buffer, 0, buffer.Length);
+            try
+            {
+                nstream.Write(buffer, 0, buffer.Length);
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }
