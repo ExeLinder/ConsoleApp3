@@ -1,13 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Net;
+using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp3
 {
     internal class Network
     {
-      
+        TcpListener? listener = null;
+
+        public Network()
+        {
+            listener = new TcpListener(IPAddress.Any, 8000);
+        }
+
+        public void Read(TcpClient client)
+        {
+            NetworkStream nstream = client.GetStream();
+
+            byte[] buffer = new byte[1024];
+
+            while (true)
+            {
+                int cnt = nstream.Read(buffer, 0, buffer.Length);
+
+                if (cnt != 0)
+                {
+                    string str = Encoding.UTF8.GetString(buffer, 0, cnt);
+
+                    Console.WriteLine(str);
+                }
+            }
+        }
     }
 }
